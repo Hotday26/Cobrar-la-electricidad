@@ -1,0 +1,189 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#define R 18000
+#define C 20000
+#include <string.h>
+
+
+using namespace std;
+
+int main(){
+	
+	char ced[10], tipo, cedmay[10], V = 0;
+	
+	int Lact=0, Lant=0, consumo=0, N, contR=0, contC=0, KW = 0; 
+	
+	double monto=0, FT=0, promR=0, promC=0, ToTR=0, ToTC = 0;
+	
+	cout<<"Ingrese el numero de suscriptores del servicio electrico: ";
+	
+	cin>>N;
+	
+	for(int i = 0; i<N; i++){
+		
+		cout<<"Ingrese la cedula del suscriptor: ";
+		
+		cin>>ced;
+		
+		cout<<"Ingrese el tipo de tarifa\n";
+		
+		cout<<"[R]esidencial\n[C]omercial\n";
+		
+		cin>>tipo;
+		
+		cout<<"Ingrese la Lectura Actual del suscriptor: ";
+		
+		cin>>Lact;
+		
+		cout<<"Ingrese la Lectura Anterior del suscriptor: ";
+		
+		cin>>Lant;
+		
+		consumo = Lact - Lant;
+		
+		while(consumo < 0){
+			
+			if(V == 1){
+			
+			
+			cout<<"El consumo debe de ser positivo";
+			
+			getch();
+			
+		}
+			
+			
+			else if(V == 2){
+			
+			
+			cout<<"EL CONSUMO POSITIVO, AGARRA UNA CALCULADORA";
+			
+			getch();
+			
+		}
+			
+			else if(V == 3){
+			
+			
+			cout<<"TE DESPEDIRE A TI, A TU FAMILIA, A TU VACA!";
+			
+			return 0;
+			
+		}
+		
+			V++;
+			
+			system("CLS");
+			
+			cout<<"Error, ingrese los datos nuevamentes\n";
+			
+			cout<<"Ingrese la cedula del suscriptor: ";
+		
+			cin>>ced;
+		
+			cout<<"Ingrese el tipo de tarifa\n";
+			
+			cout<<"[R]esidencial\n[C]omercial\n";
+		
+			cin>>tipo;
+		
+			cout<<"Ingrese la Lectura Actual del suscriptor: ";
+		
+			cin>>Lact;
+		
+			cout<<"Ingrese la Lectura Anterior del suscriptor: ";
+		
+			cin>>Lant;
+		
+			consumo = Lact - Lant;
+			
+		}
+		
+		if(tipo == 'r' || tipo == 'R'){
+			
+			cout<<"Se selecciono Residencial\n";
+			
+			contR++;
+			
+			if(consumo <= 500){
+				
+				monto = R + consumo * 0.75;
+				
+				ToTR += monto;
+				
+			}else{
+				
+				monto = R + 500 * 0.75 + (consumo - 500) * 0.6;
+				
+				ToTR += monto;
+				
+			}
+			
+			
+			
+		
+		}else{
+			
+			cout<<"Se selecciono Comercial\n";
+			
+			contC++;
+			
+			if(consumo <= 500){
+				
+				monto = C + consumo * 0.8;
+				
+				ToTC += monto;
+				
+			}else{
+				
+				monto = C + 500 * 0.8 + (consumo - 500) * 0.9;
+				
+				ToTC += monto;
+				
+			}
+		}
+		
+		cout<<"El cliente de la cedula "<<ced<<" debera pagar "<<monto;
+		
+		getch();
+		
+		system("CLS");
+		
+		if(consumo > KW){
+		
+		KW = consumo;
+		
+		strcpy(cedmay, ced);
+		
+		}
+	}
+	
+	FT = ToTR + ToTC;
+	
+	if(ToTR <= 0)
+	
+	promR = 0;
+	
+	else
+	
+	promR = ToTR / contR;
+	
+	if(ToTC <= 0)
+	
+	promC = 0;
+	
+	else
+	
+	promC = ToTC / contC;
+	
+	cout<<"\nLa facturacion total es de: "<<FT;
+	
+	cout<<"\nEl promedio de la Tarifa Residencial: "<<promR;
+	
+	cout<<"\nEl promedio de la Tarifa Comercial: "<<promC;
+	
+	cout<<"\nEl suscriptor de mayor consumo es de la cedula "<<cedmay<<" con "<<KW<<" KW";
+	
+	return 0;
+}
